@@ -4,46 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".HomeActivity">
 
     <TextView
         android:id="@+id/nomappli"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
+        android:layout_width="183dp"
+        android:layout_height="36dp"
         android:layout_marginStart="143dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="143dp"
         android:text="AndroidERestaurant"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/BoutonPlats"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
+        android:layout_width="62dp"
+        android:layout_height="34dp"
         android:layout_marginTop="70dp"
         android:text="Plats"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BoutonEntrées" />
+        app:layout_constraintTop_toBottomOf="@+id/BoutonEntrees" />
 
     <TextView
         android:id="@+id/BoutonDesserts"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:text="Desserts"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BoutonPlats" />
 
     <TextView
-        android:id="@+id/BoutonEntrées"
+        android:id="@+id/BoutonEntrees"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
-        android:text="Entrées"
+        android:text="Entrees"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomappli" />

@@ -46,6 +46,10 @@ internal class CategoryAdapter(private var arrayListOf: ArrayList<Item>, val cli
         return arrayListOf.size
     }
 
+
+
+
+
 }
 
 

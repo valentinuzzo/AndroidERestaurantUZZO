@@ -2,7 +2,10 @@ package fr.isen.uzzo.androiderestaurant
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
+import android.widget.Toast
 import androidx.constraintlayout.helper.widget.Carousel
 import com.google.android.material.snackbar.Snackbar
 import fr.isen.uzzo.androiderestaurant.databinding.ActivityDetailBinding
@@ -35,6 +38,29 @@ class DetailActivity : AppCompatActivity() {
             snack.show()
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu to use in the action bar
+        val inflater = menuInflater
+        inflater.inflate(R.menu.bottom_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle presses on the action bar menu items
+        when (item.itemId) {
+            R.id.buttonPanier -> {
+                Toast.makeText(this@DetailActivity, "Panier", Toast.LENGTH_SHORT).show()
+                return true
+            }
+            R.id.buttonBle -> {
+                Toast.makeText(this@DetailActivity, "Bluetooth", Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
 

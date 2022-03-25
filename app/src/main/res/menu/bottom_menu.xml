@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/buttonBle"
+        android:icon="@drawable/ic_baseline_bluetooth_24"
+        android:title="Bluetooth"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/buttonPanier"
+        android:icon="@drawable/ic_baseline_shopping_basket_24"
+        android:title="Panier"
+        app:showAsAction="always" />
+</menu>
+

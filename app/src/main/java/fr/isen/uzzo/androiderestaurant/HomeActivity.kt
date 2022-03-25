@@ -3,11 +3,14 @@ package fr.isen.uzzo.androiderestaurant
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import fr.isen.uzzo.androiderestaurant.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
+
+    private val TAG = "HomeActivity"
 
     private lateinit var binding: ActivityHomeBinding   //declaration
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +38,12 @@ class HomeActivity : AppCompatActivity() {
         binding.BoutonDesserts.setOnClickListener{
             goToCategory(getString(R.string.home_desert))
         }
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "Mon activité est détruite")
 
     }
 

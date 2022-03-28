@@ -1,10 +1,12 @@
 package fr.isen.uzzo.androiderestaurant
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.helper.widget.Carousel
 import com.google.android.material.snackbar.Snackbar
@@ -14,6 +16,7 @@ import fr.isen.uzzo.androiderestaurant.model.Item
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var button: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,22 +50,43 @@ class DetailActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    private fun goToBle() {
+        val intent = Intent(this, BLEScanActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToPanier() {
+        val intent = Intent(this, PanierActivity::class.java)
+        startActivity(intent)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle presses on the action bar menu items
         when (item.itemId) {
             R.id.buttonPanier -> {
                 Toast.makeText(this@DetailActivity, "Panier", Toast.LENGTH_SHORT).show()
+                goToPanier()
+
                 return true
             }
             R.id.buttonBle -> {
                 Toast.makeText(this@DetailActivity, "Bluetooth", Toast.LENGTH_SHORT).show()
+                goToBle()
                 return true
             }
 
         }
         return super.onOptionsItemSelected(item)
     }
+
+
+
+
 }
+
+
+
+
 
 
 

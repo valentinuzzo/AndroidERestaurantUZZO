@@ -89,15 +89,27 @@ class CategoryActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    private fun goToBle() {
+        val intent = Intent(this, BLEScanActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToPanier() {
+        val intent = Intent(this, PanierActivity::class.java)
+        startActivity(intent)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle presses on the action bar menu items
         when (item.itemId) {
             R.id.buttonPanier -> {
                 Toast.makeText(this@CategoryActivity, "Panier", Toast.LENGTH_SHORT).show()
+                goToPanier()
                 return true
             }
             R.id.buttonBle -> {
                 Toast.makeText(this@CategoryActivity, "Bluetooth", Toast.LENGTH_SHORT).show()
+                goToBle()
                 return true
             }
 

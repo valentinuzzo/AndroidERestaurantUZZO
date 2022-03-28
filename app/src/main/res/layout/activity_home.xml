@@ -10,9 +10,7 @@
         android:id="@+id/nomappli"
         android:layout_width="183dp"
         android:layout_height="36dp"
-        android:layout_marginStart="143dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="143dp"
+        android:layout_marginTop="50dp"
         android:text="AndroidERestaurant"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +21,7 @@
         android:id="@+id/BoutonPlats"
         android:layout_width="62dp"
         android:layout_height="34dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:text="Plats"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +32,7 @@
         android:id="@+id/BoutonDesserts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:text="Desserts"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,22 +43,36 @@
         android:id="@+id/BoutonEntrees"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="50dp"
         android:text="Entrées"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomappli" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="145dp"
         android:layout_height="173dp"
-        android:layout_marginTop="175dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomappli"
         app:srcCompat="@drawable/icone_restaurant" />
+
+    <TextView
+        android:id="@+id/idBle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Bluetooth"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BoutonDesserts"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

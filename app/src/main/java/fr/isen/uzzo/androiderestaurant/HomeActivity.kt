@@ -41,6 +41,12 @@ class HomeActivity : AppCompatActivity() {
             goToCategory(getString(R.string.home_desert))
         }
 
+        binding.idBle.setOnClickListener {
+            goToBle()
+
+
+        }
+
     }
 
     override fun onDestroy() {
@@ -55,6 +61,18 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun goToBle() {
+        val intent = Intent(this, BLEScanActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToPanier() {
+        val intent = Intent(this, PanierActivity::class.java)
+        startActivity(intent)
+    }
+
+
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu to use in the action bar
         val inflater = menuInflater
@@ -67,10 +85,12 @@ class HomeActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.buttonPanier -> {
                 Toast.makeText(this@HomeActivity, "Panier", Toast.LENGTH_SHORT).show()
+                goToPanier()
                 return true
             }
             R.id.buttonBle -> {
                 Toast.makeText(this@HomeActivity, "Bluetooth", Toast.LENGTH_SHORT).show()
+                goToBle()
                 return true
             }
 
@@ -78,5 +98,6 @@ class HomeActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 }
+
 
 

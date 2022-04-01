@@ -1,4 +1,4 @@
-package fr.isen.uzzo.androiderestaurant
+package fr.isen.uzzo.androiderestaurant.ble
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -15,6 +15,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
+import fr.isen.uzzo.androiderestaurant.BLEAScanAdapter
+import fr.isen.uzzo.androiderestaurant.R
 import fr.isen.uzzo.androiderestaurant.databinding.ActivityBlescanBinding
 
 class BLEScanActivity : AppCompatActivity() {
@@ -23,6 +26,9 @@ class BLEScanActivity : AppCompatActivity() {
     private lateinit var bleAdapter: BluetoothAdapter
     private val ENABLE_BLUETOOTH_REQUEST_CODE = 1
     private val ALL_PERMISSION_REQUEST_CODE = 100
+
+
+    private var adapter : BLEAScanAdapter? = null
 
     private val bluetoothAdapter: BluetoothAdapter? by lazy {
         val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
@@ -54,11 +60,25 @@ class BLEScanActivity : AppCompatActivity() {
         binding.bleState.setOnClickListener {
             startLeScanBLEWithPermission(!isScanning)
         }
+
+        adapter = BLEAScanAdapter(arrayListOf()) {
+            val intent = Intent(this, BleDeviceActivity::class.java)
+            intent.putExtra(DEVICE_KEY, it)
+            startActivity(intent)
+
+        }
+        binding.bleScanList.layoutManager = LinearLayoutManager(this)
+        binding.bleScanList.adapter = adapter
     }
 
     private val scanCallback = object : ScanCallback() {
         override fun onScanResult(callbackType: Int, result: ScanResult) {
             Log.d("BLEScanActivity", "result : ${result.device.address}, rssi : ${result.rssi}")
+            adapter?.apply{
+                addElement(result)
+                notifyDataSetChanged()
+            }
+
         }
     }
 
@@ -137,14 +157,18 @@ class BLEScanActivity : AppCompatActivity() {
 
     private fun handlePlayPauseAction() {
         if (isScanning) {
-            binding.bleState.setImageResource(R.drawable.ic_baseline_play_arrow_24)
-            binding.titleBle.text = getString(R.string.ble_scan_pause)
-            binding.scanProgression.isIndeterminate = false
-        } else {
             binding.bleState.setImageResource(R.drawable.ic_pause)
             binding.titleBle.text = getString(R.string.ble_scan_play)
             binding.scanProgression.isIndeterminate = true
+        } else {
+            binding.bleState.setImageResource(R.drawable.ic_baseline_play_arrow_24)
+            binding.titleBle.text = getString(R.string.ble_scan_pause)
+            binding.scanProgression.isIndeterminate = false
         }
+    }
+    companion object {
+        const val DEVICE_KEY = "device"
+
     }
 }
 

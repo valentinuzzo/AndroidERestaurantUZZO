@@ -8,11 +8,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import fr.isen.uzzo.androiderestaurant.ble.BLEScanActivity
 import fr.isen.uzzo.androiderestaurant.databinding.ActivityCategoryBinding
 import fr.isen.uzzo.androiderestaurant.model.DataResult
 import org.json.JSONObject

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/characteristicUUID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/characteristicName"
+        app:layout_constraintStart_toStartOf="@+id/characteristicName"
+        app:layout_constraintTop_toBottomOf="@+id/characteristicName"
+        tools:text="UUID : 12345678" />
+
+    <TextView
+        android:id="@+id/characteristicName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="150dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Characteristic spécifique" />
+
+    <Button
+        android:id="@+id/readAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="41dp"
+        android:text="Lecture"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/characteristicUUID"
+        app:layout_constraintVertical_bias="0.093" />
+
+    <Button
+        android:id="@+id/writeAction"
+        android:layout_width="99dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="16dp"
+        android:text="Ecrire"
+        app:layout_constraintBottom_toBottomOf="@+id/readAction"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/readAction"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/notifyAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintEnd_toStartOf="@+id/writeAction"
+        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintStart_toEndOf="@+id/readAction"
+        app:layout_constraintTop_toTopOf="@+id/readAction" />
+</androidx.constraintlayout.widget.ConstraintLayout>

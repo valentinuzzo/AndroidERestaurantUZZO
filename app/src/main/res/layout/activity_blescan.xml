@@ -5,7 +5,7 @@
     android:id="@+id/textScan"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BLEScanActivity">
+    tools:context=".ble.BLEScanActivity">
 
     <TextView
         android:id="@+id/titleBle"
@@ -39,6 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/titleBle" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bleScanList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="48dp"

@@ -6,10 +6,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
-import androidx.constraintlayout.helper.widget.Carousel
 import com.google.android.material.snackbar.Snackbar
+import fr.isen.uzzo.androiderestaurant.ble.BLEScanActivity
 import fr.isen.uzzo.androiderestaurant.databinding.ActivityDetailBinding
 import fr.isen.uzzo.androiderestaurant.model.Item
 
@@ -83,6 +82,7 @@ class DetailActivity : AppCompatActivity() {
 
 
 }
+
 
 
 

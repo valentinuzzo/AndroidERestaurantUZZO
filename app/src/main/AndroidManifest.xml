@@ -21,10 +21,19 @@
         android:theme="@style/Theme.AndroidERestaurant"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ble.BLEUUIDAttributes"
+            android:exported="false" />
+        <activity
+            android:name=".ble.BleDeviceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BLEScanAdapter"
+            android:exported="false" />
+        <activity
             android:name=".PanierActivity"
             android:exported="false" />
         <activity
-            android:name=".BLEScanActivity"
+            android:name=".ble.BLEScanActivity"
             android:exported="false" />
         <activity
             android:name=".DetailActivity"

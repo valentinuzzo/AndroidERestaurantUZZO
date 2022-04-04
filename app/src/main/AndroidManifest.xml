@@ -21,6 +21,9 @@
         android:theme="@style/Theme.AndroidERestaurant"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".PanierAdapter"
+            android:exported="false" />
+        <activity
             android:name=".ble.BLEUUIDAttributes"
             android:exported="false" />
         <activity

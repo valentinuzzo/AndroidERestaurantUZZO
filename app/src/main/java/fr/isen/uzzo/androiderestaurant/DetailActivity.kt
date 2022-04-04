@@ -1,5 +1,6 @@
 package fr.isen.uzzo.androiderestaurant
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,9 +11,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
 import fr.isen.uzzo.androiderestaurant.ble.BLEScanActivity
 import fr.isen.uzzo.androiderestaurant.databinding.ActivityDetailBinding
+import fr.isen.uzzo.androiderestaurant.model.Dish
 import fr.isen.uzzo.androiderestaurant.model.Item
+import fr.isen.uzzo.androiderestaurant.model.Panier
+import fr.isen.uzzo.androiderestaurant.model.PanierItems
+import java.io.File
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
@@ -126,6 +132,55 @@ class DetailActivity : AppCompatActivity() {
         val total1: Float = totalPrice.toFloat() * selected
         val totalString: String = "Total : " + total1.toString() + "€"
         binding.buttonPrice.text = totalString
+    }
+
+
+
+//CHANGE PRICE
+/*
+    private fun changePrice(dish: Dish, nb: Int) {
+        var newPrice = dish.prices[0].price.toFloatOrNull()
+        newPrice = newPrice?.times(nb)
+        binding.buttonAdd.ImageView = "$newPrice €"
+    }*/
+    private fun updateFile(dishBasket : PanierItems) {
+        val file = File(cacheDir.absolutePath + "/basket.json")
+        var dishesBasket: List<PanierItems> = ArrayList()
+
+        if (file.exists()) {
+            dishesBasket = Gson().fromJson(file.readText(), Panier::class.java).data
+        }
+
+        var dupli = false
+        for (i in dishesBasket.indices) {
+            if (dishesBasket[i].dish == dishBasket.dish) {
+                dishesBasket[i].quantity += dishBasket.quantity
+                dupli = true
+            }
+        }
+
+        if (!dupli) {
+            dishesBasket = dishesBasket + dishBasket
+        }
+
+        file.writeText(Gson().toJson(Panier(dishesBasket)))
+    }
+/*
+    private fun updateSharedPreferences(quantity: Int, price: Float) {
+        val sharedPreferences = this.getSharedPreferences(getString(R.string.spFileName), Context.MODE_PRIVATE)
+
+        val oldQuantity = sharedPreferences.getInt(getString(R.string.spTotalQuantity), 0)
+        val newQuantity = oldQuantity + quantity
+        sharedPreferences.edit().putInt(getString(R.string.spTotalQuantity), newQuantity).apply()
+
+        val oldPrice = sharedPreferences.getFloat(getString(R.string.spTotalPrice), 0.0f)
+        val newPrice = oldPrice + price
+        sharedPreferences.edit().putFloat(getString(R.string.spTotalPrice), newPrice).apply()
+    }*/
+
+    private fun changeActivity() {
+        val intent = Intent(this@DetailActivity, PanierActivity::class.java)
+        startActivity(intent)
     }
 }
 

@@ -71,6 +71,8 @@ class BleDeviceActivity : AppCompatActivity() {
         bluetoothGatt?.connect()
     }
 
+    // lire la characteristic
+
     override fun onStop() {
         super.onStop()
         closeBluetoothGatt()

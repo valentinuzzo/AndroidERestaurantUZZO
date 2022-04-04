@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">AndroidERestaurant</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">ValentinUzzoAndroidERestaurant</string>
     <string name="welcome_restaurant">Bienvenue à mon IOTRestaurant</string>
     <string name="home_starters">Entrées</string>
     <string name="home_dish">Plats</string>

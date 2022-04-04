@@ -126,7 +126,6 @@ class DetailActivity : AppCompatActivity() {
         val total1: Float = totalPrice.toFloat() * selected
         val totalString: String = "Total : " + total1.toString() + "€"
         binding.buttonPrice.text = totalString
-
     }
 }
 

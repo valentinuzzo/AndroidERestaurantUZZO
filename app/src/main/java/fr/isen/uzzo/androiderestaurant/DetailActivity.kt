@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import fr.isen.uzzo.androiderestaurant.ble.BLEScanActivity
@@ -15,6 +17,11 @@ import fr.isen.uzzo.androiderestaurant.model.Item
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var button: Button
+    lateinit var buttonAdd: ImageView
+    lateinit var buttonRemove: ImageView
+    lateinit var quantity: TextView
+    lateinit var buttonReset: Button
+    var num: Float = 1F
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,10 +43,46 @@ class DetailActivity : AppCompatActivity() {
         button = findViewById(R.id.buttonPrice)
 
         button.setOnClickListener {
-            val snack = Snackbar.make(it,"ajoutez au panier",Snackbar.LENGTH_LONG)
+            val snack = Snackbar.make(it,"ajout au panier",Snackbar.LENGTH_LONG)
             snack.show()
         }
+        var tv = findViewById<TextView>(R.id.quantity)
 
+        quantity = findViewById(R.id.quantity)
+        quantity.text = num.toString()
+        totalComplete(item, num)
+
+// set on-click listener for ImageView
+
+        buttonAdd = findViewById(R.id.buttonAdd)
+        buttonAdd.setOnClickListener {
+
+            num++
+            tv.setText("$num")
+            quantity.text = num.toString()
+            totalComplete(item, num)
+        }
+        buttonRemove = findViewById(R.id.buttonRemove)
+        buttonRemove.setOnClickListener {
+            if(num<2F)
+            {
+                num = 2F
+            }
+            num--
+            tv.setText("$num")
+            quantity.text = num.toString()
+            totalComplete(item, num)
+        }
+        buttonReset = findViewById(R.id.buttonReset)
+        buttonReset.setOnClickListener {
+
+            Toast.makeText(this@DetailActivity, "Suppression des éléments", Toast.LENGTH_SHORT)
+                .show()
+            num = 1F
+            tv.setText("$num")
+            quantity.text = num.toString()
+            totalComplete(item, num)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -78,9 +121,13 @@ class DetailActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun totalComplete(item: Item, selected: Float) {
+        val totalPrice: String = item.prices[0].price
+        val total1: Float = totalPrice.toFloat() * selected
+        val totalString: String = "Total : " + total1.toString() + "€"
+        binding.buttonPrice.text = totalString
 
-
-
+    }
 }
 
 

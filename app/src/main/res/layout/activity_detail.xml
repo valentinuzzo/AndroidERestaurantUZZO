@@ -10,10 +10,10 @@
         android:id="@+id/detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/titrePlat"
+        app:layout_constraintStart_toStartOf="@+id/titrePlat"
         app:layout_constraintTop_toBottomOf="@+id/titrePlat" />
 
     <ImageView
@@ -21,7 +21,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toStartOf="@+id/quantity"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,12 +32,10 @@
         android:id="@+id/buttonAdd"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonRemove"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/quantity"
-        app:layout_constraintTop_toBottomOf="@+id/detail"
+        app:layout_constraintTop_toTopOf="@+id/buttonRemove"
         app:srcCompat="@drawable/ic_baseline_add_circle_24" />
 
     <TextView
@@ -45,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
         android:text="Quantity"
         app:layout_constraintEnd_toStartOf="@+id/buttonAdd"
@@ -64,8 +62,7 @@
         android:id="@+id/titrePlat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="150dp"
+        android:layout_marginTop="30dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,10 +72,20 @@
         android:id="@+id/buttonPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:text="Button"
+        android:layout_marginBottom="25dp"
+        android:text="Total :"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Reset"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quantity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

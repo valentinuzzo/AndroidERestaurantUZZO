@@ -23,6 +23,9 @@ class CategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = "Vos choix"
+
         binding = ActivityCategoryBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)

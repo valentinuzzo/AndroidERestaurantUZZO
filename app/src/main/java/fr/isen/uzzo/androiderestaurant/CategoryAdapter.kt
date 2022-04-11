@@ -17,6 +17,7 @@ internal class CategoryAdapter(private var arrayListOf: ArrayList<Item>, val cli
 
     internal inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var itemTextView: TextView = view.findViewById(R.id.CategoryTitle)
+        var prixTextView: TextView = view.findViewById(R.id.prixText)
         val image: ImageView = view.findViewById(R.id.itemLogo)
 
     }
@@ -29,6 +30,10 @@ internal class CategoryAdapter(private var arrayListOf: ArrayList<Item>, val cli
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = arrayListOf[position]
         holder.itemTextView.text = item.name_fr
+        holder.prixTextView.text = "Prix à l'unité : " + item.prices[0].price + " € "
+        holder.itemView.setOnClickListener {
+            clickListener(item)
+        }
 
         val url = item.images[0]
         Picasso.get()

@@ -6,19 +6,32 @@
     <string name="home_desert">Desserts</string>
     <string name="home_ble">Bluetooth</string>
 
-
     <string-array name="plats">
         <item>Pate carbonara</item>
         <item>Pate bolognaise</item>
         <item>Pate nature</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="ble_scan_play">Pause le scan BLE</string>
     <string name="ble_scan_pause">Lancer le scan BLE</string>
     <string name="ble_scan_device_error">BLE non disponible sur cet appareil</string>
     <string name="ble_device_disconnected">Statut déconnecté</string>
     <string name="ble_device_connected">Statut connecté</string>
 
+    <string name="spFileName">SharedPreferences</string>
+    <string name="spTotalQuantity">totalBasketQuantity</string>
+    <string name="spTotalPrice">totalBasketPrice</string>
+    <string name="spUserId">userId</string>
+    <string name="basketDeleteAllTxt">Votre panier a été supprimé</string>
+
+    <string name="basketTitle">Votre panier</string>
+    <string name="basketButtonBuy">Passer la commande</string>
+    <string name="basketIconDeleteContentDescription">Button de suppression d\'un item</string>
+    <string name="basketButtonDeleteAllContentDescription">Button de suppression de tout le panier</string>
+    <string name="quantity">Quantité : </string>
+    <string name="basketTotalQuantity">Quantité totale : </string>
+    <string name="totalPrice">Total : </string>
+
+    <string name="addToBasket">Ajout au panier réussi</string>
 
 </resources>
 

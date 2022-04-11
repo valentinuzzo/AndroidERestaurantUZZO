@@ -9,7 +9,7 @@
         android:id="@+id/CategoryTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="36dp"
         android:text="Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,4 +26,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CategoryTitle"
         app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/prixText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/CategoryTitle"
+        app:layout_constraintStart_toStartOf="@+id/CategoryTitle"
+        app:layout_constraintTop_toBottomOf="@+id/CategoryTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

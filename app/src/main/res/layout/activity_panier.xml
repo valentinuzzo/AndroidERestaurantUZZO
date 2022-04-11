@@ -7,43 +7,66 @@
     tools:context=".PanierActivity">
 
     <TextView
-        android:id="@+id/titlePanier"
+        android:id="@+id/panierTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="Panier"
+        android:layout_marginTop="20dp"
+        android:text="Voici votre panier"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/totalPrice"
+        android:id="@+id/panierTotalPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="30dp"
         android:text="totalPrice"
+        app:layout_constraintEnd_toStartOf="@+id/panierButtonBuy"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titlePanier" />
+        app:layout_constraintTop_toBottomOf="@+id/panierTitle" />
 
     <TextView
-        android:id="@+id/newQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:text="newQuantity"
-        app:layout_constraintEnd_toStartOf="@+id/totalQuantity"
-        app:layout_constraintStart_toEndOf="@+id/totalPrice"
-        app:layout_constraintTop_toBottomOf="@+id/titlePanier" />
-
-    <TextView
-        android:id="@+id/totalQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="32dp"
+        android:id="@+id/panierTotalQuantity"
+        android:layout_width="236dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="137dp"
         android:text="totalQuantity"
+        app:layout_constraintEnd_toStartOf="@+id/panierButtonDelete"
+        app:layout_constraintHorizontal_bias="0.276"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/panierTotalPrice" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/panierList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titlePanier" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/panierTotalQuantity" />
+
+    <Button
+        android:id="@+id/panierButtonBuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Buy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/panierTitle" />
+
+    <Button
+        android:id="@+id/panierButtonDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="Delete"
+        app:layout_constraintEnd_toEndOf="@+id/panierButtonBuy"
+        app:layout_constraintTop_toBottomOf="@+id/panierButtonBuy" />
 </androidx.constraintlayout.widget.ConstraintLayout>

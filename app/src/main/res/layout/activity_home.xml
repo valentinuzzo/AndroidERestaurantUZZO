@@ -24,8 +24,8 @@
         android:layout_marginTop="50dp"
         android:text="Plats"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/BoutonEntrees"
+        app:layout_constraintStart_toStartOf="@+id/BoutonEntrees"
         app:layout_constraintTop_toBottomOf="@+id/BoutonEntrees" />
 
     <TextView
@@ -35,30 +35,21 @@
         android:layout_marginTop="50dp"
         android:text="Desserts"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/BoutonPlats"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/BoutonPlats"
         app:layout_constraintTop_toBottomOf="@+id/BoutonPlats" />
 
     <TextView
         android:id="@+id/BoutonEntrees"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="14dp"
         android:text="Entrées"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="145dp"
-        android:layout_height="173dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomappli"
-        app:srcCompat="@drawable/icone_restaurant" />
 
     <TextView
         android:id="@+id/idBle"
@@ -68,11 +59,21 @@
         android:text="Bluetooth"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/BoutonDesserts"
         app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/BoutonDesserts"
         app:layout_constraintTop_toBottomOf="@+id/BoutonDesserts"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="229dp"
+        android:layout_height="239dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomappli"
+        app:srcCompat="@drawable/chapeau_de_chef_avec_le_signe_de_couteau_et_de_fourchette_17375610" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

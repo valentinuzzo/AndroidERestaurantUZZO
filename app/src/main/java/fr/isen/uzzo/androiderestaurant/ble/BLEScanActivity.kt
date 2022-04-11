@@ -26,8 +26,6 @@ class BLEScanActivity : AppCompatActivity() {
     private lateinit var bleAdapter: BluetoothAdapter
     private val ENABLE_BLUETOOTH_REQUEST_CODE = 1
     private val ALL_PERMISSION_REQUEST_CODE = 100
-
-
     private var adapter : BLEAScanAdapter? = null
 
     private val bluetoothAdapter: BluetoothAdapter? by lazy {
@@ -36,9 +34,13 @@ class BLEScanActivity : AppCompatActivity() {
     }
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blescan)
+
+        val actionBar = supportActionBar
+        actionBar!!.title = "Bluetooth"
 
         binding = ActivityBlescanBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -1,20 +1,21 @@
 package fr.isen.uzzo.androiderestaurant
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
+import fr.isen.uzzo.androiderestaurant.CategoryActivity.Companion.ITEM_KEY
 import fr.isen.uzzo.androiderestaurant.ble.BLEScanActivity
 import fr.isen.uzzo.androiderestaurant.databinding.ActivityDetailBinding
-import fr.isen.uzzo.androiderestaurant.model.Dish
 import fr.isen.uzzo.androiderestaurant.model.Item
 import fr.isen.uzzo.androiderestaurant.model.Panier
 import fr.isen.uzzo.androiderestaurant.model.PanierItems
@@ -23,72 +24,139 @@ import java.io.File
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var button: Button
-    lateinit var buttonAdd: ImageView
-    lateinit var buttonRemove: ImageView
-    lateinit var quantity: TextView
     lateinit var buttonReset: Button
-    var num: Float = 1F
-
+    lateinit var quantity: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val view = binding.root
+        setContentView(view)
 
-        val item = intent.getSerializableExtra(CategoryActivity.ITEM_KEY) as Item
-        binding.titrePlat.text = item.name_fr
-
-        binding.detail.text = item.ingredients.joinToString ( ", " ){it.name_fr}
-        binding.buttonPrice.text = item.prices.joinToString(", "){"Total: "+ it.price.toString()}
-
-        val carouselAdapter = CarouselAdapter(this, item.images)
-
-        binding.detailSlider.adapter = carouselAdapter
+        val actionBar = supportActionBar
+        actionBar!!.title = "Details"
 
         button = findViewById(R.id.buttonPrice)
-
-        button.setOnClickListener {
-            val snack = Snackbar.make(it,"ajout au panier",Snackbar.LENGTH_LONG)
-            snack.show()
+        button.setOnClickListener{
+            val snackbar = Snackbar.make(it, "Produit ajouté au panier", Snackbar.LENGTH_LONG)
+            val intent = Intent(this@DetailActivity, PanierActivity::class.java)
+            startActivity(intent)
+            snackbar.show()
         }
-        var tv = findViewById<TextView>(R.id.quantity)
 
-        quantity = findViewById(R.id.quantity)
-        quantity.text = num.toString()
-        totalComplete(item, num)
+        val item = intent.getSerializableExtra(ITEM_KEY) as Item
 
-// set on-click listener for ImageView
+        binding.titrePlat.text = item.name_fr
+        binding.detail.text = item.ingredients.joinToString(", "){it.name_fr}
+        binding.buttonPrice.text = item.prices.joinToString(", "){"Ajouter au panier: "+ it.price.toString()}
 
-        buttonAdd = findViewById(R.id.buttonAdd)
-        buttonAdd.setOnClickListener {
+        val carousselAdapter = CarouselAdapter(this, item.images)
 
-            num++
-            tv.setText("$num")
-            quantity.text = num.toString()
-            totalComplete(item, num)
+        binding.detailSlider.adapter = carousselAdapter
+
+        addToPanier(item)
+    }
+
+    @SuppressLint("setTextI18n")
+    private fun display(somme: Int, price: Float) {
+        binding.quantity.text = somme.toString()
+        binding.buttonPrice.text = "Total : " + price.toString() + "€"
+    }
+
+
+
+    private fun updateSharedPreferences(quantity: Int, price: Float) {
+        val sharedPreferences = this.getSharedPreferences(getString(R.string.spFileName), Context.MODE_PRIVATE)
+
+        val oldQuantity = sharedPreferences.getInt(getString(R.string.spTotalQuantity), 0)
+        val newQuantity = oldQuantity + quantity
+        sharedPreferences.edit().putInt(getString(R.string.spTotalQuantity), newQuantity).apply()
+
+        val oldPrice = sharedPreferences.getFloat(getString(R.string.spTotalPrice), 0.0f)
+        val newPrice = oldPrice + price
+        sharedPreferences.edit().putFloat(getString(R.string.spTotalPrice), newPrice).apply()
+    }
+
+
+    private fun addToPanier(item: Item) {
+        var nbInShop = 1
+        binding.buttonAdd.setOnClickListener()
+        {
+            nbInShop++
+            Log.i("nbInShop", nbInShop.toString())
+            display(nbInShop, nbInShop * item.prices[0].price.toFloat())
         }
-        buttonRemove = findViewById(R.id.buttonRemove)
-        buttonRemove.setOnClickListener {
-            if(num<2F)
-            {
-                num = 2F
+
+        binding.buttonRemove.setOnClickListener()
+        {
+
+            if (nbInShop > 1) {
+                nbInShop--
+                Log.i("nbInShop", nbInShop.toString())
+                display(nbInShop, nbInShop * item.prices[0].price.toFloat())
             }
-            num--
-            tv.setText("$num")
-            quantity.text = num.toString()
-            totalComplete(item, num)
         }
+
+        var tv = findViewById<TextView>(R.id.quantity)
+        quantity = findViewById(R.id.quantity)
+        quantity.text = nbInShop.toString()
+        totalComplete(item, nbInShop)
         buttonReset = findViewById(R.id.buttonReset)
         buttonReset.setOnClickListener {
 
             Toast.makeText(this@DetailActivity, "Suppression des éléments", Toast.LENGTH_SHORT)
                 .show()
-            num = 1F
-            tv.setText("$num")
-            quantity.text = num.toString()
-            totalComplete(item, num)
+            nbInShop = 1
+            if(nbInShop>1)
+            {
+                nbInShop=1
+            }
+            tv.setText("$nbInShop")
+            quantity.text = nbInShop.toString()
+            totalComplete(item, nbInShop)
         }
+
+
+        binding.titrePlat.text = item.name_fr
+
+        val txt = getString(R.string.totalPrice) + item.prices[0].price + " €"
+        binding.buttonPrice.text = txt
+
+        binding.buttonPrice.setOnClickListener {
+                Snackbar.make(
+                    it, "Article(s) ajouté(s) au panier : " + nbInShop + " " + binding.titrePlat.text,
+                    Snackbar.LENGTH_LONG
+                ).setAction("Afficher le panier") {
+                    startActivity(Intent(this, PanierActivity::class.java))
+                }
+                    .show()
+                updateFile(PanierItems(item, nbInShop))
+                updateSharedPreferences(nbInShop, (item.prices[0].price.toFloat() * nbInShop))
+        }
+    }
+
+    private fun updateFile(itemBasket: PanierItems) {
+        val file = File(cacheDir.absolutePath + "/basket.json")
+        var itemsBasket: List<PanierItems> = ArrayList()
+
+        if (file.exists()) {
+            itemsBasket = Gson().fromJson(file.readText(), Panier::class.java).data
+        }
+
+        var dupli = false
+        for (i in itemsBasket.indices) {
+            if (itemsBasket[i].item == itemBasket.item) {
+                itemsBasket[i].quantity += itemBasket.quantity
+                dupli = true
+            }
+        }
+
+        if (!dupli) {
+            itemsBasket = itemsBasket + itemBasket
+        }
+
+        file.writeText(Gson().toJson(Panier(itemsBasket)))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -127,68 +195,13 @@ class DetailActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun totalComplete(item: Item, selected: Float) {
+    private fun totalComplete(item: Item, selected: Int) {
         val totalPrice: String = item.prices[0].price
         val total1: Float = totalPrice.toFloat() * selected
         val totalString: String = "Total : " + total1.toString() + "€"
         binding.buttonPrice.text = totalString
     }
-
-
-
-//CHANGE PRICE
-/*
-    private fun changePrice(dish: Dish, nb: Int) {
-        var newPrice = dish.prices[0].price.toFloatOrNull()
-        newPrice = newPrice?.times(nb)
-        binding.buttonAdd.ImageView = "$newPrice €"
-    }*/
-    private fun updateFile(dishBasket : PanierItems) {
-        val file = File(cacheDir.absolutePath + "/basket.json")
-        var dishesBasket: List<PanierItems> = ArrayList()
-
-        if (file.exists()) {
-            dishesBasket = Gson().fromJson(file.readText(), Panier::class.java).data
-        }
-
-        var dupli = false
-        for (i in dishesBasket.indices) {
-            if (dishesBasket[i].dish == dishBasket.dish) {
-                dishesBasket[i].quantity += dishBasket.quantity
-                dupli = true
-            }
-        }
-
-        if (!dupli) {
-            dishesBasket = dishesBasket + dishBasket
-        }
-
-        file.writeText(Gson().toJson(Panier(dishesBasket)))
-    }
-/*
-    private fun updateSharedPreferences(quantity: Int, price: Float) {
-        val sharedPreferences = this.getSharedPreferences(getString(R.string.spFileName), Context.MODE_PRIVATE)
-
-        val oldQuantity = sharedPreferences.getInt(getString(R.string.spTotalQuantity), 0)
-        val newQuantity = oldQuantity + quantity
-        sharedPreferences.edit().putInt(getString(R.string.spTotalQuantity), newQuantity).apply()
-
-        val oldPrice = sharedPreferences.getFloat(getString(R.string.spTotalPrice), 0.0f)
-        val newPrice = oldPrice + price
-        sharedPreferences.edit().putFloat(getString(R.string.spTotalPrice), newPrice).apply()
-    }*/
-
-    private fun changeActivity() {
-        val intent = Intent(this@DetailActivity, PanierActivity::class.java)
-        startActivity(intent)
-    }
 }
-
-
-
-
-
-
 
 
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="fr.isen.uzzo.androiderestaurant"
     android:usesCleartextTraffic="true">
 
@@ -22,15 +23,14 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".PanierAdapter"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".ble.BLEUUIDAttributes"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".ble.BleDeviceActivity"
-            android:exported="false" />
-        <activity
-            android:name=".BLEScanAdapter"
             android:exported="false" />
         <activity
             android:name=".PanierActivity"
